@@ -27,6 +27,33 @@ const createEmployeeSchema = Joi.object({
   bpjsCode: Joi.string().allow('').optional(),
 });
 
+const updateEmployeeSchema = Joi.object({
+  name: Joi.string(),
+  nik: Joi.string(),
+  gender: Joi.string().valid(...Object.values(GENDER)),
+  birthPlace: Joi.string(),
+  birthDate: Joi.date(),
+  phoneNumber: Joi.string(),
+  province: Joi.string(),
+  city: Joi.string(),
+  district: Joi.string(),
+  village: Joi.string(),
+  addressDetail: Joi.string(),
+  username: Joi.string(),
+  email: Joi.string().email(),
+  password: Joi.string().min(6),
+  position: Joi.string(),
+  contractStartDate: Joi.date(),
+  contractEndDate: Joi.date().when('contractStartDate', {
+    is: Joi.exist(),
+    then: Joi.date().greater(Joi.ref('contractStartDate')),
+    otherwise: Joi.date(),
+  }),
+  maritalStatus: Joi.string().valid(...Object.values(MARITAL_STATUS)),
+  bpjsCode: Joi.string().allow(''),
+}).min(1);
+
 module.exports = {
   createEmployeeSchema,
+  updateEmployeeSchema,
 };

@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const employeeRoutes = require('./interface/routes/employee');
 const errorHandler = require('./interface/middlewares/errorHandler');

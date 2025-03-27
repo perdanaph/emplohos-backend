@@ -10,5 +10,15 @@ router.post(
   upload,
   employeeController.createEmployee.bind(employeeController)
 );
+router.put(
+  '/:id',
+  upload,
+  employeeController.changeEmployee.bind(employeeController)
+);
+
+router.get(
+  '/:id',
+  employeeController.findEmployeeById.bind(employeeController)
+);
 
 module.exports = router;
