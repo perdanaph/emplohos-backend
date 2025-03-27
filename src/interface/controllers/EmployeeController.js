@@ -16,10 +16,9 @@ class EmployeeController {
         return res.status(400).json({ error: error.details[0].message });
       }
 
-      // Hash password
       value.password = await hashPassword(value.password);
 
-      // Handle profile photo if uploaded
+      // console.log(req.file);
       if (req.file) {
         value.profilePhoto = req.file.path;
       }
